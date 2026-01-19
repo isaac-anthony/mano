@@ -1,0 +1,49 @@
+{
+  "type": "function",
+  "function": {
+    "name": "place_order",
+    "description": "Places an order with the restaurant. Use this when the customer confirms they want to place their order.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "description": "Array of items the customer wants to order",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item_id": {
+                "type": "string",
+                "description": "The Square catalog object ID (variation ID) for the menu item"
+              },
+              "quantity": {
+                "type": "string",
+                "description": "The quantity of this item (as a string, e.g., '1', '2')"
+              },
+              "modifiers": {
+                "type": "array",
+                "description": "Optional array of modifier objects for customizations like 'no onions', 'extra cheese', etc.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "catalog_object_id": {
+                      "type": "string",
+                      "description": "The Square catalog object ID for the modifier"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Human-readable name of the modifier (e.g., 'No Onions', 'Extra Cheese')"
+                    }
+                  },
+                  "required": ["catalog_object_id", "name"]
+                }
+              }
+            },
+            "required": ["item_id", "quantity"]
+          }
+        }
+      },
+      "required": ["items"]
+    }
+  }
+}
